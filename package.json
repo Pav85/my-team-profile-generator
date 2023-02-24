@@ -4,5 +4,26 @@
   },
   "devDependencies": {
     "jest": "^29.4.3"
-  }
+  },
+  "name": "my-team-profile-generator",
+  "description": "team profile generating app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pav85/my-team-profile-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pav85/my-team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/Pav85/my-team-profile-generator#readme"
 }
