@@ -40,7 +40,7 @@ inquirer
   ])
   .then((response) => {
     // populate manager info
-    // promptForNexEMployee ()
+    promptForNexEMployee();
   });
 
 const promptForNextEmployee = () => {
@@ -48,6 +48,10 @@ const promptForNextEmployee = () => {
     .prompt([
       {
         // choice of 3
+        type: "list",
+        message: "Please select a type of a team member you would like to add",
+        name: "teamMemberType",
+        choices: ["Engineer", "Intern", "Finish building this team"],
       },
     ])
     .then((response) => {
@@ -57,14 +61,33 @@ const promptForNextEmployee = () => {
       //    promptForIntern
       // else
       //    use the functionality from page-template to generate the team
+      generateTeam(team);
     });
 };
 
 const promptForEngineer = () => {
   inquirer
     .prompt([
+      //engineer questions
       {
-        //engineer questions
+        type: "input",
+        message: "What is your engineer's name?",
+        name: "engineerName",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's Id?",
+        name: "engineerId",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's email?",
+        name: "engineerEmail",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's Github username?",
+        name: "engineerGithubUsername",
       },
     ])
     .then((response) => {
@@ -76,8 +99,26 @@ const promptForEngineer = () => {
 const promptForIntern = () => {
   inquirer
     .prompt([
+      //intern questions
       {
-        //intern questions
+        type: "input",
+        message: "What is your intern's name?",
+        name: "internName",
+      },
+      {
+        type: "input",
+        message: "What is your intern's Id?",
+        name: "internId",
+      },
+      {
+        type: "input",
+        message: "What is your intern's email?",
+        name: "internEmail",
+      },
+      {
+        type: "input",
+        message: "What is your intern's school?",
+        name: "internSchool",
       },
     ])
     .then((response) => {
