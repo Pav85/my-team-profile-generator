@@ -16,8 +16,26 @@ const render = require("./src/page-template.js");
 
 inquirer
   .prompt([
+    //managerquestions
     {
-      //managerquestions
+      type: "input",
+      message: "What is team manager's name?",
+      name: "managerName",
+    },
+    {
+      type: "input",
+      message: "What is team manager's Id?",
+      name: "managerId",
+    },
+    {
+      type: "input",
+      message: "What is team manager's email?",
+      name: "managerEmail",
+    },
+    {
+      type: "input",
+      message: "What is team manager's office number?",
+      name: "managerOfficeNumber",
     },
   ])
   .then((response) => {
