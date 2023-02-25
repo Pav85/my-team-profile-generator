@@ -61,7 +61,7 @@ const promptForNextEmployee = () => {
       //    promptForIntern
       // else
       //    use the functionality from page-template to generate the team
-      generateTeam(team);
+      // generateTeam(team); not sure here yet
     });
 };
 
