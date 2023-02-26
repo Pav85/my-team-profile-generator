@@ -12,36 +12,41 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-// starter and pseudo code given by Dan M
+// const teamMembers = []; // team members not sure if i will need
 
-inquirer
-  .prompt([
-    //managerquestions
-    {
-      type: "input",
-      message: "What is team manager's name?",
-      name: "managerName",
-    },
-    {
-      type: "input",
-      message: "What is team manager's Id?",
-      name: "managerId",
-    },
-    {
-      type: "input",
-      message: "What is team manager's email?",
-      name: "managerEmail",
-    },
-    {
-      type: "input",
-      message: "What is team manager's office number?",
-      name: "managerOfficeNumber",
-    },
-  ])
-  .then((response) => {
-    // populate manager info
-    promptForNexEMployee();
-  });
+// starter and pseudo code given by Dan M
+const promptForManager = () => {
+  inquirer // maybe will need to put return
+    .prompt([
+      //managerquestions
+      {
+        type: "input",
+        message: "What is team manager's name?",
+        name: "managerName",
+      },
+      {
+        type: "input",
+        message: "What is team manager's Id?",
+        name: "managerId",
+      },
+      {
+        type: "input",
+        message: "What is team manager's email?",
+        name: "managerEmail",
+      },
+      {
+        type: "input",
+        message: "What is team manager's office number?",
+        name: "managerOfficeNumber",
+      },
+    ])
+    .then((response) => {
+      // populate manager info
+      promptForNextEmployee();
+      // console.log("Welcome to the team!!!");
+      // console.log(response);
+    });
+};
 
 const promptForNextEmployee = () => {
   inquirer
@@ -62,6 +67,15 @@ const promptForNextEmployee = () => {
       // else
       //    use the functionality from page-template to generate the team
       // generateTeam(team); not sure here yet
+      // console.log(response);
+      if (response.teamMemberType === "Engineer") {
+        promptForEngineer();
+      } else if (response.teamMemberType === "Intern") {
+        promptForIntern();
+      } else {
+        console.log("Your team is complete!");
+        buildPage();
+      }
     });
 };
 
@@ -92,7 +106,7 @@ const promptForEngineer = () => {
     ])
     .then((response) => {
       // add new engineer to employees array
-      // promptForNextEmployee
+      promptForNextEmployee();
     });
 };
 
@@ -123,8 +137,20 @@ const promptForIntern = () => {
     ])
     .then((response) => {
       // add new intern to employees array
-      // promptForNextEmployee
+      promptForNextEmployee();
     });
 };
 
-const buildPage = () => {};
+const buildPage = () => {
+  console.log("Congratulations!!!");
+};
+
+promptForManager();
+
+// promptForNextEmployee();
+
+// promptForEngineer();
+
+// promptForIntern();
+
+// module.exports = buildPage();
