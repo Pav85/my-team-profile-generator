@@ -8,7 +8,7 @@ This project is designed to create a team profile page using Node.js
 
 ## Table of Contents
 
-**[User Story](#User_Story)**<br>
+**[User Story](#UserStory)**<br>
 
 **[Installation](#Installation)**<br>
 

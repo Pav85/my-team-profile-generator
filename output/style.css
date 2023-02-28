@@ -8,13 +8,32 @@ h2,
 h3 {
   color: black;
   opacity: 80%;
+  text-align: center;
+}
+
+li {
+  text-align: center;
+  display: grid;
+  align-content: center;
 }
 
 .jumbotron {
   background-color: #ed6a5a;
+  border-bottom: 1px solid black;
+}
+
+.employee-card {
+  margin: 20px;
+  width: 400px !important;
+  min-width: 300px;
 }
 
 .card-header {
   background-color: #f4f1bb;
   min-height: 80px;
+}
+
+.list-group li {
+  min-height: 100px;
+  /* min-width: 300px; */
 }
