@@ -82,3 +82,5 @@ https://github.com/Pav85. Thank you for your time and I hope you enjoyed.
 ## Video
 
 For a walkthrough video click on the following link:
+
+https://drive.google.com/file/d/1PMssCbzcvB3mrDcnuZJ9DhoDRvFtH3dj/view
