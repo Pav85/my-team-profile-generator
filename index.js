@@ -97,22 +97,22 @@ const promptForEngineer = () => {
       {
         type: "input",
         message: "What is your engineer's name?",
-        name: "engineerName",
+        name: "name",
       },
       {
         type: "input",
         message: "What is your engineer's Id?",
-        name: "engineerId",
+        name: "id",
       },
       {
         type: "input",
         message: "What is your engineer's email?",
-        name: "engineerEmail",
+        name: "email",
       },
       {
         type: "input",
         message: "What is your engineer's Github username?",
-        name: "engineerGithubUsername",
+        name: "github",
       },
     ])
     .then((response) => {
@@ -125,6 +125,7 @@ const promptForEngineer = () => {
       );
       team.push(engineer);
       // console.log(team);
+      // console.log(team);
       promptForNextEmployee();
     });
 };
@@ -136,22 +137,22 @@ const promptForIntern = () => {
       {
         type: "input",
         message: "What is your intern's name?",
-        name: "internName",
+        name: "name",
       },
       {
         type: "input",
         message: "What is your intern's Id?",
-        name: "internId",
+        name: "id",
       },
       {
         type: "input",
         message: "What is your intern's email?",
-        name: "internEmail",
+        name: "email",
       },
       {
         type: "input",
         message: "What is your intern's school?",
-        name: "internSchool",
+        name: "school",
       },
     ])
     .then((response) => {
