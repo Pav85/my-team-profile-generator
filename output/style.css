@@ -4,6 +4,17 @@ h1 {
   color: white;
 }
 
+h2,
+h3 {
+  color: black;
+  opacity: 80%;
+}
+
 .jumbotron {
   background-color: #ed6a5a;
+}
+
+.card-header {
+  background-color: #f4f1bb;
+  min-height: 80px;
 }
