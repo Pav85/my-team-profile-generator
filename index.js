@@ -12,9 +12,10 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-// const teamMembers = []; // team members not sure if i will need
+const team = []; // team members array
 
 // starter and pseudo code given by Dan M
+
 const promptForManager = () => {
   inquirer // maybe will need to put return
     .prompt([
@@ -22,29 +23,37 @@ const promptForManager = () => {
       {
         type: "input",
         message: "What is team manager's name?",
-        name: "managerName",
+        name: "name",
       },
       {
         type: "input",
         message: "What is team manager's Id?",
-        name: "managerId",
+        name: "id",
       },
       {
         type: "input",
         message: "What is team manager's email?",
-        name: "managerEmail",
+        name: "email",
       },
       {
         type: "input",
         message: "What is team manager's office number?",
-        name: "managerOfficeNumber",
+        name: "officeNumber",
       },
     ])
     .then((response) => {
       // populate manager info
+      const manager = new Manager(
+        response.name,
+        response.id,
+        response.email,
+        response.officeNumber
+      );
+      team.push(manager);
       promptForNextEmployee();
       // console.log("Welcome to the team!!!");
       // console.log(response);
+      // console.log(team);
     });
 };
 
@@ -57,6 +66,7 @@ const promptForNextEmployee = () => {
         message: "Please select a type of a team member you would like to add",
         name: "teamMemberType",
         choices: ["Engineer", "Intern", "Finish building this team"],
+        default: "Use arrow keys",
       },
     ])
     .then((response) => {
@@ -74,7 +84,8 @@ const promptForNextEmployee = () => {
         promptForIntern();
       } else {
         console.log("Your team is complete!");
-        buildPage();
+        console.log(team);
+        // buildPage();  // build the team
       }
     });
 };
@@ -106,6 +117,14 @@ const promptForEngineer = () => {
     ])
     .then((response) => {
       // add new engineer to employees array
+      const engineer = new Engineer(
+        response.name,
+        response.id,
+        response.email,
+        response.github
+      );
+      team.push(engineer);
+      // console.log(team);
       promptForNextEmployee();
     });
 };
@@ -137,20 +156,25 @@ const promptForIntern = () => {
     ])
     .then((response) => {
       // add new intern to employees array
+      const intern = new Intern(
+        response.name,
+        response.id,
+        response.email,
+        response.school
+      );
+      team.push(intern);
+      // console.log(team);
       promptForNextEmployee();
     });
 };
 
-const buildPage = () => {
-  console.log("Congratulations!!!");
-};
+// const buildPage = () => {
+//   const teamMembers = [];
+//   teamMembers.push(manager);
+// };
 
 promptForManager();
 
-// promptForNextEmployee();
+// buildPage();
 
-// promptForEngineer();
-
-// promptForIntern();
-
-// module.exports = buildPage();
+// module.exports
