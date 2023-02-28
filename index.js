@@ -4,6 +4,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const validator = require("validator");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -24,21 +25,51 @@ const promptForManager = () => {
         type: "input",
         message: "What is team manager's name?",
         name: "name",
+        validate: function (input) {
+          if (input === "") {
+            return "Please enter manager's name";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
         message: "What is team manager's Id?",
         name: "id",
+        default: "number",
+        validate: function (input) {
+          if (input === "" || !validator.isNumeric(input)) {
+            return "Please enter numeric value";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
         message: "What is team manager's email?",
         name: "email",
+        default: "foo@bar.com",
+        validate: function (input) {
+          if (input === "" || !validator.isEmail(input)) {
+            return "Please enter the value";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
         message: "What is team manager's office number?",
         name: "officeNumber",
+        validate: function (input) {
+          if (input === "" || !validator.isNumeric(input)) {
+            return "Please enter numeric value";
+          } else {
+            return true;
+          }
+        },
       },
     ])
     .then((response) => {
@@ -85,7 +116,7 @@ const promptForNextEmployee = () => {
       } else {
         console.log("Your team is complete!");
         console.log(team);
-        // buildPage();  // build the team
+        buildPage(); // build the team
       }
     });
 };
@@ -98,11 +129,26 @@ const promptForEngineer = () => {
         type: "input",
         message: "What is your engineer's name?",
         name: "name",
+        validate: function (input) {
+          if (input === "") {
+            return "Please enter the value";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
         message: "What is your engineer's Id?",
         name: "id",
+        default: "number",
+        validate: function (input) {
+          if (input === "" || !validator.isNumeric(input)) {
+            return "Please enter numeric value";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
@@ -169,10 +215,11 @@ const promptForIntern = () => {
     });
 };
 
-// const buildPage = () => {
-//   const teamMembers = [];
-//   teamMembers.push(manager);
-// };
+const buildPage = () => {
+  console.log(render(team));
+  fs.writeFileSync(outputPath, render(team));
+  // writeToFile(); // not sure here yet
+};
 
 promptForManager();
 
