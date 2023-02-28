@@ -17,10 +17,12 @@ const team = []; // team members array
 
 // starter and pseudo code given by Dan M
 
+// function for manager information below
+
 const promptForManager = () => {
-  inquirer // maybe will need to put return
+  inquirer
     .prompt([
-      //managerquestions
+      // manager questions
       {
         type: "input",
         message: "What is team manager's name?",
@@ -28,6 +30,8 @@ const promptForManager = () => {
         validate: function (input) {
           if (input === "") {
             return "Please enter manager's name";
+          } else if (validator.isNumeric(input)) {
+            return "Name must not be a number";
           } else {
             return true;
           }
@@ -53,7 +57,7 @@ const promptForManager = () => {
         default: "foo@bar.com",
         validate: function (input) {
           if (input === "" || !validator.isEmail(input)) {
-            return "Please enter the value";
+            return "Please enter valid email";
           } else {
             return true;
           }
@@ -73,7 +77,6 @@ const promptForManager = () => {
       },
     ])
     .then((response) => {
-      // populate manager info
       const manager = new Manager(
         response.name,
         response.id,
@@ -82,33 +85,23 @@ const promptForManager = () => {
       );
       team.push(manager);
       promptForNextEmployee();
-      // console.log("Welcome to the team!!!");
-      // console.log(response);
-      // console.log(team);
     });
 };
+
+// function for next employee request
 
 const promptForNextEmployee = () => {
   inquirer
     .prompt([
       {
-        // choice of 3
         type: "list",
         message: "Please select a type of a team member you would like to add",
         name: "teamMemberType",
-        choices: ["Engineer", "Intern", "Finish building this team"],
+        choices: ["Engineer", "Intern", "Finish building the team"],
         default: "Use arrow keys",
       },
     ])
     .then((response) => {
-      // if engineer
-      //    promptForEngineer
-      // else if intern
-      //    promptForIntern
-      // else
-      //    use the functionality from page-template to generate the team
-      // generateTeam(team); not sure here yet
-      // console.log(response);
       if (response.teamMemberType === "Engineer") {
         promptForEngineer();
       } else if (response.teamMemberType === "Intern") {
@@ -131,7 +124,9 @@ const promptForEngineer = () => {
         name: "name",
         validate: function (input) {
           if (input === "") {
-            return "Please enter the value";
+            return "Please enter engineer's name";
+          } else if (validator.isNumeric(input)) {
+            return "Name must not be a number";
           } else {
             return true;
           }
@@ -154,6 +149,14 @@ const promptForEngineer = () => {
         type: "input",
         message: "What is your engineer's email?",
         name: "email",
+        default: "foo@bar.com",
+        validate: function (input) {
+          if (input === "" || !validator.isEmail(input)) {
+            return "Please enter valid email";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
@@ -162,7 +165,6 @@ const promptForEngineer = () => {
       },
     ])
     .then((response) => {
-      // add new engineer to employees array
       const engineer = new Engineer(
         response.name,
         response.id,
@@ -170,8 +172,7 @@ const promptForEngineer = () => {
         response.github
       );
       team.push(engineer);
-      // console.log(team);
-      // console.log(team);
+
       promptForNextEmployee();
     });
 };
@@ -184,16 +185,41 @@ const promptForIntern = () => {
         type: "input",
         message: "What is your intern's name?",
         name: "name",
+        validate: function (input) {
+          if (input === "") {
+            return "Please enter intern's name";
+          } else if (validator.isNumeric(input)) {
+            return "Name must not be a number";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
         message: "What is your intern's Id?",
         name: "id",
+        default: "number",
+        validate: function (input) {
+          if (input === "" || !validator.isNumeric(input)) {
+            return "Please enter numeric value";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
         message: "What is your intern's email?",
         name: "email",
+        default: "foo@bar.com",
+        validate: function (input) {
+          if (input === "" || !validator.isEmail(input)) {
+            return "Please enter valid email";
+          } else {
+            return true;
+          }
+        },
       },
       {
         type: "input",
@@ -202,7 +228,6 @@ const promptForIntern = () => {
       },
     ])
     .then((response) => {
-      // add new intern to employees array
       const intern = new Intern(
         response.name,
         response.id,
@@ -210,19 +235,13 @@ const promptForIntern = () => {
         response.school
       );
       team.push(intern);
-      // console.log(team);
+
       promptForNextEmployee();
     });
 };
 
 const buildPage = () => {
-  console.log(render(team));
   fs.writeFileSync(outputPath, render(team));
-  // writeToFile(); // not sure here yet
 };
 
 promptForManager();
-
-// buildPage();
-
-// module.exports
