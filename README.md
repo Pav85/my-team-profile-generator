@@ -57,6 +57,10 @@ Download it and run the installation commands thn run the following to start gen
 node index.js
 ```
 
+After running the app your generated team page should look similar to this:
+
+![Team profile example](./images/screenshot.png)
+
 ## License
 
 This project is licensed under the MIT license.
